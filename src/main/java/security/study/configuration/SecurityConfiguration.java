@@ -6,12 +6,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
-import security.study.security.authority.CustomGrantedAuthority;
-import security.study.security.service.InMemoryUserDetailsService;
-import security.study.security.user.CustomUser;
 
 import javax.sql.DataSource;
-import java.util.List;
 
 @Configuration
 public class SecurityConfiguration {
