@@ -1,7 +1,6 @@
 package security.study.security.user;
 
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
