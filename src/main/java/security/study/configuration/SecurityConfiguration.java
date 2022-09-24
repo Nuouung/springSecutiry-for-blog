@@ -9,9 +9,10 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import security.study.security.filter.AuthenticationLogFilter;
 import security.study.security.filter.RequestValidationFilter;
+import security.study.security.filter.SecretCodeAuthenticationFilter;
 
 @Configuration
-@EnableWebSecurity
+@EnableWebSecurity(debug = true)
 @RequiredArgsConstructor
 public class SecurityConfiguration {
 
@@ -24,7 +25,8 @@ public class SecurityConfiguration {
 
         http
                 .addFilterBefore(requestValidationFilter, BasicAuthenticationFilter.class)
-                .addFilterAfter(new AuthenticationLogFilter(), BasicAuthenticationFilter.class);
+                .addFilterAfter(new AuthenticationLogFilter(), BasicAuthenticationFilter.class)
+                .addFilterAt(new SecretCodeAuthenticationFilter(), BasicAuthenticationFilter.class);
 
         http
                 .authorizeRequests().anyRequest().authenticated();

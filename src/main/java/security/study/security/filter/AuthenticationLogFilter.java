@@ -12,7 +12,6 @@ import java.io.IOException;
 @Component
 public class AuthenticationLogFilter implements Filter {
 
-
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
         log.info("필터 초기화 : {}", this.getClass());
