@@ -1,20 +1,26 @@
 package security.study.configuration;
 
-import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.SecurityFilterChain;
-import security.study.security.filter.SecretBoardTokenFilter;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
+import security.study.security.filter.RequestValidationFilter;
 
 @Configuration
 @EnableWebSecurity(debug = true)
-public class ProjectConfiguration {
+@RequiredArgsConstructor
+public class SecurityConfiguration {
+
+    private final RequestValidationFilter requestValidationFilter;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.authorizeRequests().anyRequest().permitAll();
+        http.httpBasic();
+        http.addFilterBefore(requestValidationFilter, BasicAuthenticationFilter.class);
+
         return http.build();
     }
 }
