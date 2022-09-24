@@ -10,7 +10,8 @@ import java.io.IOException;
 
 @Slf4j
 @Component
-public class RequestValidationFilter implements Filter {
+public class AuthenticationLogFilter implements Filter {
+
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -23,13 +24,8 @@ public class RequestValidationFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
 
-        String secretAccessCode = request.getHeader("Secret-Access-Code");
-
-        if (secretAccessCode == null || secretAccessCode.isBlank()) {
-            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            return;
-        }
-
+        log.info("응답 status : {}", response.getStatus());
+        log.info("인증 성공 IP : {}", request.getHeader("Secret-Access-Code"));
         chain.doFilter(request, response);
     }
 
