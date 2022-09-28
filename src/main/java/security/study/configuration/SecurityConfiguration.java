@@ -20,16 +20,12 @@ public class SecurityConfiguration {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http
-                .httpBasic();
+        http.httpBasic();
 
         http
                 .addFilterBefore(requestValidationFilter, BasicAuthenticationFilter.class)
                 .addFilterAfter(new AuthenticationLogFilter(), BasicAuthenticationFilter.class)
                 .addFilterAt(new SecretCodeAuthenticationFilter(), BasicAuthenticationFilter.class);
-
-        http
-                .authorizeRequests().anyRequest().authenticated();
 
         return http.build();
     }
