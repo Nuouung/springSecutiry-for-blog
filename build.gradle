@@ -15,12 +15,17 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	// 추가
-	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
-	implementation 'org.mariadb.jdbc:mariadb-java-client'
+//	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+//	implementation 'org.mariadb.jdbc:mariadb-java-client'
+//	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 
-	// 추가추가
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation group: 'io.jsonwebtoken', name: 'jjwt-api', version: '0.11.2'
+	implementation group: 'io.jsonwebtoken', name: 'jjwt-impl', version: '0.11.2'
+	implementation group: 'io.jsonwebtoken', name: 'jjwt-jackson', version: '0.11.2'
+
+	implementation 'jakarta.xml.bind:jakarta.xml.bind-api:4.0.0'
+	implementation 'org.glassfish.jaxb:jaxb-runtime:4.0.1'
+
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 
